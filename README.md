@@ -72,3 +72,63 @@ def api_url():
         return "Error: No id field provided. Please specify an url."
 </code>
 </pre>
+
+## Appelle de notre à travers l'objet XMLHttpRequest
+
+<pre>
+<code>
+    &lt;script&gt;
+            var bouton = document.getElementById('btn');
+            bouton.addEventListener( 'click', (e) => {
+                var param = document.getElementById('url').value;
+                getContent(param);
+            } );
+            const getContent = (param)  => {
+                var url = "http://127.0.0.1:5000/api?url=" + param;
+                var oReq = new XMLHttpRequest();
+                var div = document.getElementById('load');
+                var image = document.createElement('img')
+                oReq.addEventListener('progress', (e) => {
+                    image.setAttribute('src', 'loading-buffering.gif');
+                    div.appendChild(image);
+                })
+                oReq.addEventListener("load", () => {
+                        var reponse = document.getElementById('reponse');
+                        var article = document.getElementById('article');
+                        reponse.innerHTML="";
+                        article.innerHTML=""
+                        if (oReq.status != 200) { // analyze HTTP status of the response
+                            alert(`Error ${oReq.status}: ${oReq.statusText}`); // e.g. 404: Not Found
+                        } else { // show the result
+                            //alert(`Done, got ${oReq.responseText} bytes`);
+                            var rep = JSON.parse(oReq.responseText);
+                           setTimeout(()=>{
+                            div.removeChild(image)
+                           }, 2000);
+                            var titre = document.createElement('h3');
+                            titre.style.margin = '0px auto';
+                            var titreText = document.createTextNode('Le résumé de l\'article');
+                            titre.appendChild(titreText);
+                            var para = document.createElement('p');
+                            var parText = document.createTextNode(rep.resume);
+                            para.appendChild(parText);
+                            var titre2 = document.createElement('h3');
+                            titre2.style.margin = '0px auto';
+                            var titreText2 = document.createTextNode('L\'article original');
+                            titre2.appendChild(titreText2);
+                            var para2 = document.createElement('p');
+                            var parText2 = document.createTextNode(rep.article);
+                            para2.appendChild(parText2);
+                            reponse.appendChild(titre);
+                            reponse.appendChild(para);
+                            article.appendChild(titre2);
+                            article.appendChild(para2);
+                        }
+                    }
+                );
+                oReq.open("GET", url);
+                oReq.send()
+            }
+    &lt;/script&gt;
+</code>
+</pre>
