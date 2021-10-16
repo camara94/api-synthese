@@ -27,3 +27,10 @@ Si la sortie de ces commandes inclut un numéro de version, Python est installé
 
 ## Créer un projet
 Sous Windows, vous pouvez créer le dossier <code>**api**</code> avec ces commandes dans votre environnement de ligne de commande <code>**cmd**</code> :
+
+<pre>
+<code>
+    md api
+    cd api
+</code>
+</pre>
