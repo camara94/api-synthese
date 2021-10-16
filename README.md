@@ -44,3 +44,12 @@ Sous Windows, vous pouvez créer le dossier <code>**api**</code> avec ces comman
 </pre>
 
 Ensuite, ouvrez un éditeur de texte (tel que VSCODE ou Notepad++), créer un fichier <code>api.py</code> et entrez le code suivant :
+## Importer les packages suivants
+<pre>
+<code>
+    import flask
+    from flask import request, jsonify
+    from synthese import *
+    from flask_cors import CORS, cross_origin
+</code>
+</pre>
