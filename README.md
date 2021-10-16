@@ -73,6 +73,14 @@ def api_url():
 </code>
 </pre>
 
+## Exécuter
+
+<pre>
+<code>
+    python api.py
+</code>
+</pre>
+
 ## Appelle de notre à travers l'objet XMLHttpRequest
 
 <pre>

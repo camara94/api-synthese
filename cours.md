@@ -1,3 +1,11 @@
+----
+Auteur: CAMARA Laby Damaro
+
+Email: ldamaro98@gmail.com
+
+github: https://github.com/camara94
+
+----
 # Création API REST en Python
 
 Dans ce tuto, nous allons réaliser une API RESTFULL en qui va exploiter notre algorithme de synthèse automatique
@@ -76,6 +84,15 @@ def api_url():
 </code>
 </pre>
 
+## Exécuter
+
+<pre>
+<code>
+    python api.py
+</code>
+</pre>
+## Demo
+![demo](1.png)
 ## Appelle de notre à travers l'objet XMLHttpRequest
 
 <pre>
