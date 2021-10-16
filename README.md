@@ -34,3 +34,11 @@ Sous Windows, vous pouvez créer le dossier <code>**api**</code> avec ces comman
     cd api
 </code>
 </pre>
+
+## Installer  flask-cors
+
+<pre>
+<code>
+    pip install -U flask-cors
+</code>
+</pre>
