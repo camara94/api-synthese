@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>API REST</title>
+        <style>
+            .container {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                grid-gap: 4px;
+            }
+
+            #reponse, #article {
+                border: 1px dotted;
+                margin: 5px;
+                padding: 5px;
+            }
+        </style>
+    </head>
+    <body>
+        <div>
+            <h2>Veuillez saisir une URL du site mosaïque FM</h2>
+            <input type="url" placeholder="URL" id="url">
+            <button id="btn">Résumer l'article</button>
+        </div>
+        <div  id="load"></div>
+        <div class="container">
+            <div id="article"></div>
+            <div id="reponse"></div>
+            <div id="erreur"></div>
+        </div>
+        <script>
+
+            var bouton = document.getElementById('btn');
+            bouton.addEventListener( 'click', (e) => {
+                var param = document.getElementById('url').value;
+                getContent(param);
+            } );
+
+            const getContent = (param)  => {
+                var url = "http://127.0.0.1:5000/api?url=" + param;
+                var oReq = new XMLHttpRequest();
+                var div = document.getElementById('load');
+                var image = document.createElement('img')
+                oReq.addEventListener('progress', (e) => {
+                    image.setAttribute('src', 'loading-buffering.gif');
+                    div.appendChild(image);
+                })
+                oReq.addEventListener("load", () => {
+                        var reponse = document.getElementById('reponse');
+                        var article = document.getElementById('article');
+                        reponse.innerHTML="";
+                        article.innerHTML=""
+                        if (oReq.status != 200) { // analyze HTTP status of the response
+                            alert(`Error ${oReq.status}: ${oReq.statusText}`); // e.g. 404: Not Found
+                        } else { // show the result
+                            //alert(`Done, got ${oReq.responseText} bytes`); // response is the server response
+                            var rep = JSON.parse(oReq.responseText);
+                           setTimeout(()=>{
+                            div.removeChild(image)
+                           }, 2000);
+
+                            var titre = document.createElement('h3');
+                            titre.style.margin = '0px auto';
+                            var titreText = document.createTextNode('Le résumé de l\'article');
+                            titre.appendChild(titreText);
+
+                            var para = document.createElement('p');
+                            var parText = document.createTextNode(rep.resume);
+                            para.appendChild(parText);
+
+                            var titre2 = document.createElement('h3');
+                            titre2.style.margin = '0px auto';
+                            var titreText2 = document.createTextNode('L\'article original');
+                            titre2.appendChild(titreText2);
+
+                            var para2 = document.createElement('p');
+                            var parText2 = document.createTextNode(rep.article);
+                            para2.appendChild(parText2);
+
+                            reponse.appendChild(titre);
+                            reponse.appendChild(para);
+
+                            article.appendChild(titre2);
+                            article.appendChild(para2);
+                        }
+                    }
+                );
+                oReq.open("GET", url);
+                oReq.send()
+            }
+            //
+        </script>
+    </body>
+</html>
