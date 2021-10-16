@@ -17,3 +17,10 @@ Une fois votre ligne de commande ouverte, saisissez ces commandes :
 </pre>
 
 Si la sortie de ces commandes inclut un numéro de version, Python est installé et disponible à partir de la ligne de commande et vous pouvez passer à l'étape suivante.
+
+## Installer flask
+<pre>
+<code>
+    pip install flask --user
+</code>
+</pre>
