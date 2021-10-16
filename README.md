@@ -24,3 +24,6 @@ Si la sortie de ces commandes inclut un numéro de version, Python est installé
     pip install flask --user
 </code>
 </pre>
+
+## Créer un projet
+Sous Windows, vous pouvez créer le dossier <code>**api**</code> avec ces commandes dans votre environnement de ligne de commande <code>**cmd**</code> :
