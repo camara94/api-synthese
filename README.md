@@ -81,6 +81,9 @@ def api_url():
 </code>
 </pre>
 
+## Demo
+![demo](1.png)
+
 ## Appelle de notre à travers l'objet XMLHttpRequest
 
 <pre>
