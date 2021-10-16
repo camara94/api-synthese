@@ -42,3 +42,5 @@ Sous Windows, vous pouvez créer le dossier <code>**api**</code> avec ces comman
     pip install -U flask-cors
 </code>
 </pre>
+
+Ensuite, ouvrez un éditeur de texte (tel que VSCODE ou Notepad++), créer un fichier <code>api.py</code> et entrez le code suivant :
