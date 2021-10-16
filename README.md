@@ -53,3 +53,22 @@ Ensuite, ouvrez un éditeur de texte (tel que VSCODE ou Notepad++), créer un fi
     from flask_cors import CORS, cross_origin
 </code>
 </pre>
+
+## Créer un endpoint 
+Cet endpoint, va me permettre de prendre l'URL d'un article retourner l'article et son résumé.
+
+<pre>
+<code>
+@app.route('/api', methods=['GET'])
+@cross_origin()
+def api_url():
+    # Check if an URL was provided as part of the URL.
+    # If URL is provided, assign it to a variable.
+    # If no URL is provided, display an error in the browser.
+    if 'url' in request.args:
+        url = str(request.args['url'])
+        return synthese_automatique(url)
+    else:
+        return "Error: No id field provided. Please specify an url."
+</code>
+</pre>
